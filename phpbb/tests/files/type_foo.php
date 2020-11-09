@@ -1,0 +1,36 @@
+<?php
+/**
+ * This file is part of the phpBB Forum Software package.
+ *
+ * @copyright (c) phpBB Limited <https://www.phpbb.com>
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ * For full copyright and license information, please see
+ * the docs/CREDITS.txt file.
+ *
+ * @package default
+ */
+
+
+namespace phpbb\files\types;
+
+class foo extends \phpbb\files\types\remote
+{
+	static public $tempnam_path;
+}
+
+
+/**
+ *
+ * @param unknown $one
+ * @param unknown $two
+ * @return unknown
+ */
+function tempnam($one, $two) {
+	if (empty(foo::$tempnam_path)) {
+		return \tempnam($one, $two);
+	}
+	else {
+		return foo::$tempnam_path;
+	}
+}
